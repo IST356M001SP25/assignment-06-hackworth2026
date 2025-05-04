@@ -7,7 +7,7 @@ if __name__ == "__main__":
     sys.path.append('code')
     from apicalls import get_google_place_details, get_azure_sentiment, get_azure_named_entity_recognition
 else:
-    from code.apicalls import get_google_place_details, get_azure_sentiment, get_azure_named_entity_recognition
+    from assignment06Hackworth2026.code.apicalls import get_google_place_details, get_azure_sentiment, get_azure_named_entity_recognition
 
 PLACE_IDS_SOURCE_FILE = "code/solutions/cache/place_ids.csv"
 CACHE_REVIEWS_FILE = "code/solutions/cache/reviews.csv"
