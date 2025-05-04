@@ -4,17 +4,48 @@ import requests
 APIKEY = "75810a48248cee2b50a513c0"
 
 def get_google_place_details(google_place_id: str) -> dict:
-    pass # Implement this function
-    
+    '''
+    Given a Google Place ID, return the details about the place.
+    '''
+    header = { 'X-API-KEY': APIKEY }
+    params = { 'place_id': google_place_id }
+    url = "https://cent.ischool-iot.net/api/google/place"
+    response = requests.get(url, headers=header, params=params)
+    response.raise_for_status()
+    return response.json()
+
 def get_azure_sentiment(text: str) -> dict:
-    pass # Implement this function
+    '''
+    Given a text string, return sentiment analysis results.
+    '''
+    header = { 'X-API-KEY': APIKEY }
+    payload = { 'text': text }
+    url = "https://cent.ischool-iot.net/api/azure/sentiment"
+    response = requests.post(url, headers=header, json=payload)
+    response.raise_for_status()
+    return response.json()
 
 def get_azure_key_phrase_extraction(text: str) -> dict:
-    pass # Implement this function
+    '''
+    Given a text string, extract key phrases.
+    '''
+    header = { 'X-API-KEY': APIKEY }
+    payload = { 'text': text }
+    url = "https://cent.ischool-iot.net/api/azure/keyphrases"
+    response = requests.post(url, headers=header, json=payload)
+    response.raise_for_status()
+    return response.json()
 
 def get_azure_named_entity_recognition(text: str) -> dict:
-    pass # Implement this function
-
+    '''
+    Given a text string, perform named entity recognition.
+    '''
+    header = { 'X-API-KEY': APIKEY }
+    payload = { 'text': text }
+    url = "https://cent.ischool-iot.net/api/azure/entities"
+    response = requests.post(url, headers=header, json=payload)
+    response.raise_for_status()
+    return response.json()
 
 def geocode(place:str) -> dict:
     '''
