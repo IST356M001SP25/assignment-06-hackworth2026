@@ -15,6 +15,8 @@ def test_reviews_step_output():
     lines = 10
     cols = ['place_id','name','author_name','rating','text']
 
+    print(f"Checking path: {os.path.abspath(file)}") 
+
     print(f"TESTING: {file} file exists")
     assert os.path.exists(file)
 
@@ -31,6 +33,8 @@ def test_sentiment_step_output():
 
     lines = 80
     cols = [ c.strip().lower() for c in "place_id,name,author_name,rating,sentence_text,sentence_sentiment,confidenceScores.positive,confidenceScores.neutral,confidenceScores.negative".split(",")]
+
+    print(f"Checking path: {os.path.abspath(file)}")
 
     print(f"TESTING: {file} file exists")
     assert os.path.exists(file)
@@ -49,6 +53,8 @@ def test_entity_exraction_step_file_in_cache():
     file =etl.CACHE_ENTITIES_FILE
     lines = 100
     cols = [ c.strip().lower() for c in "place_id,name,author_name,rating,sentence_text,sentence_sentiment,confidenceScores.positive,confidenceScores.neutral,confidenceScores.negative,entity_text,entity_category,entity_subcategory,confidenceScores.entity".split(",")]
+
+    print(f"Checking path: {os.path.abspath(file)}")
 
     print(f"TESTING: {file} file exists")
     assert os.path.exists(file)
