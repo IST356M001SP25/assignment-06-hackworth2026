@@ -26,11 +26,7 @@ def reviews_step(place_ids: str | pd.DataFrame) -> pd.DataFrame:
     reviews_list = []
     for _, row in place_ids.iterrows():
         place_id = row['place_id']
-        response = requests.get(f"https://cent.ischool-iot.net/api/google/place", 
-                                headers={'X-API-KEY': APIKEY}, 
-                                params={'place_id': place_id})
-        response.raise_for_status()
-        details = response.json()
+        details = get_google_place_details(place_id)
         for review in details.get('reviews', []):
             reviews_list.append({
                 'place_id': place_id,
@@ -52,12 +48,7 @@ def sentiment_step(reviews: str | pd.DataFrame) -> pd.DataFrame:
     
     sentiment_data = []
     for _, row in reviews.iterrows():
-        payload = json.dumps({'text': row['text']})
-        response = requests.post("https://cent.ischool-iot.net/api/azure/sentiment",
-                                 headers={'X-API-KEY': APIKEY, 'Content-Type': 'application/json'},
-                                 data=payload)
-        response.raise_for_status()
-        sentiment = response.json()
+        sentiment = get_azure_sentiment(row['text'])
         for sentence in sentiment.get('sentences', []):
             sentiment_data.append({
                 'place_id': row['place_id'],
@@ -83,12 +74,7 @@ def entity_extraction_step(sentiment: str | pd.DataFrame) -> pd.DataFrame:
     
     entity_data = []
     for _, row in sentiment.iterrows():
-        payload = json.dumps({'text': row['sentence_text']})
-        response = requests.post("https://cent.ischool-iot.net/api/azure/entities",
-                                 headers={'X-API-KEY': APIKEY, 'Content-Type': 'application/json'},
-                                 data=payload)
-        response.raise_for_status()
-        entities_result = response.json()
+        entities_result = get_azure_named_entity_recognition(row['sentence_text'])
         for entity in entities_result.get('entities', []):
             entity_data.append({
                 'place_id': row['place_id'],

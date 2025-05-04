@@ -9,7 +9,7 @@ def get_google_place_details(google_place_id: str) -> dict:
     '''
     header = { 'X-API-KEY': APIKEY }
     params = { 'place_id': google_place_id }
-    url = "https://cent.ischool-iot.net/api/google/place"
+    url = "https://cent.ischool-iot.net/api/google/places/details"
     response = requests.get(url, headers=header, params=params)
     response.raise_for_status()
     return response.json()
@@ -31,7 +31,7 @@ def get_azure_key_phrase_extraction(text: str) -> dict:
     '''
     header = { 'X-API-KEY': APIKEY }
     payload = { 'text': text }
-    url = "https://cent.ischool-iot.net/api/azure/keyphrases"
+    url = "https://cent.ischool-iot.net/api/azure/keyphrasextraction"
     response = requests.post(url, headers=header, json=payload)
     response.raise_for_status()
     return response.json()
@@ -42,7 +42,7 @@ def get_azure_named_entity_recognition(text: str) -> dict:
     '''
     header = { 'X-API-KEY': APIKEY }
     payload = { 'text': text }
-    url = "https://cent.ischool-iot.net/api/azure/entities"
+    url = "https://cent.ischool-iot.net/api/azure/entityrecognition"
     response = requests.post(url, headers=header, json=payload)
     response.raise_for_status()
     return response.json()
