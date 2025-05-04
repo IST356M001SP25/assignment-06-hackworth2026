@@ -23,3 +23,4 @@ Examples:
 
 `--- Reflection Below This Line ---`
 
+I felt troubled in some of the development of building this code, especailly when it came to understanding the application of api and ensuring the parameter were set correctly to respond to diverse demands. But, it was a welcomed challenge. The main issues I had were initally with the testing, small mismatches with the testing data and the live data that was being pulled through the api. So, there were times were I needed to debug the test files just like my code files, that way the test would run in absolute fairness. Overall, the issues were nothing that I could not overcome with a little support with copilot to answer some coding questions I had.
