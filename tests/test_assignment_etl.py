@@ -12,7 +12,7 @@ def test_should_pass():
 
 def test_reviews_step_output():
     file = etl.CACHE_REVIEWS_FILE
-    lines = 10
+    lines = 20
     cols = ['place_id','name','author_name','rating','text']
 
     print(f"Checking path: {os.path.abspath(file)}") 
